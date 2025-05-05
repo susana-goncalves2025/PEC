@@ -1,0 +1,57 @@
+[0.559s] Invoking command in '/home/susana/ros2_ws/src/my_robot_controller': PYTHONPATH=/home/susana/ros2_ws/src/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/my_robot_controller build --build-base /home/susana/ros2_ws/src/build/my_robot_controller/build install --record /home/susana/ros2_ws/src/build/my_robot_controller/install.log --single-version-externally-managed install_data
+[0.776s] running egg_info
+[0.777s] creating ../build/my_robot_controller/my_robot_controller.egg-info
+[0.777s] writing ../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO
+[0.777s] writing dependency_links to ../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt
+[0.777s] writing entry points to ../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt
+[0.777s] writing requirements to ../build/my_robot_controller/my_robot_controller.egg-info/requires.txt
+[0.778s] writing top-level names to ../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
+[0.778s] writing manifest file '../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[0.779s] reading manifest file '../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[0.780s] writing manifest file '../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[0.780s] running build
+[0.780s] running build_py
+[0.780s] creating /home/susana/ros2_ws/src/build/my_robot_controller/build
+[0.781s] creating /home/susana/ros2_ws/src/build/my_robot_controller/build/lib
+[0.782s] creating /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.783s] copying my_robot_controller/my_first_node.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.783s] copying my_robot_controller/pose_subscriber.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.784s] copying my_robot_controller/turtle_controller_test_vii.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.784s] copying my_robot_controller/turtle_controller.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.784s] copying my_robot_controller/draw_circle.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.785s] copying my_robot_controller/__init__.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.785s] copying my_robot_controller/turtle_controller_test.py -> /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller
+[0.785s] running install
+[0.786s] running install_lib
+[0.787s] creating /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.787s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/my_first_node.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.787s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/pose_subscriber.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.787s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/turtle_controller_test_vii.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.787s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/turtle_controller.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.787s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/draw_circle.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.788s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/__init__.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.788s] copying /home/susana/ros2_ws/src/build/my_robot_controller/build/lib/my_robot_controller/turtle_controller_test.py -> /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[0.788s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/my_first_node.py to my_first_node.cpython-310.pyc
+[0.789s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/pose_subscriber.py to pose_subscriber.cpython-310.pyc
+[0.789s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/turtle_controller_test_vii.py to turtle_controller_test_vii.cpython-310.pyc
+[0.790s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/turtle_controller.py to turtle_controller.cpython-310.pyc
+[0.790s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/draw_circle.py to draw_circle.cpython-310.pyc
+[0.791s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/__init__.py to __init__.cpython-310.pyc
+[0.791s] byte-compiling /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/turtle_controller_test.py to turtle_controller_test.cpython-310.pyc
+[0.791s] running install_data
+[0.792s] creating /home/susana/ros2_ws/src/install/my_robot_controller/share/ament_index
+[0.792s] creating /home/susana/ros2_ws/src/install/my_robot_controller/share/ament_index/resource_index
+[0.792s] creating /home/susana/ros2_ws/src/install/my_robot_controller/share/ament_index/resource_index/packages
+[0.792s] copying resource/my_robot_controller -> /home/susana/ros2_ws/src/install/my_robot_controller/share/ament_index/resource_index/packages
+[0.792s] copying package.xml -> /home/susana/ros2_ws/src/install/my_robot_controller/share/my_robot_controller
+[0.792s] running install_egg_info
+[0.794s] Copying ../build/my_robot_controller/my_robot_controller.egg-info to /home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info
+[0.795s] running install_scripts
+[0.815s] Installing draw_circle script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.815s] Installing pose_subscriber script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.816s] Installing test_node script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.816s] Installing turtle_controller script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.816s] Installing turtle_controller_test script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.816s] Installing turtle_controller_test_vii script to /home/susana/ros2_ws/src/install/my_robot_controller/lib/my_robot_controller
+[0.816s] writing list of installed files to '/home/susana/ros2_ws/src/build/my_robot_controller/install.log'
+[0.847s] Invoked command in '/home/susana/ros2_ws/src/my_robot_controller' returned '0': PYTHONPATH=/home/susana/ros2_ws/src/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/susana/ros2_ws/src/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/my_robot_controller build --build-base /home/susana/ros2_ws/src/build/my_robot_controller/build install --record /home/susana/ros2_ws/src/build/my_robot_controller/install.log --single-version-externally-managed install_data

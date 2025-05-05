@@ -1,0 +1,29 @@
+[1.081s] Invoking command in '/home/susana/ros2_ws/src/my_robot_controller': PYTHONPATH=/home/susana/ros2_ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /home/susana/ros2_ws/build/my_robot_controller/build install --record /home/susana/ros2_ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
+[1.456s] running egg_info
+[1.457s] writing ../../build/my_robot_controller/my_robot_controller.egg-info/PKG-INFO
+[1.459s] writing dependency_links to ../../build/my_robot_controller/my_robot_controller.egg-info/dependency_links.txt
+[1.460s] writing entry points to ../../build/my_robot_controller/my_robot_controller.egg-info/entry_points.txt
+[1.461s] writing requirements to ../../build/my_robot_controller/my_robot_controller.egg-info/requires.txt
+[1.462s] writing top-level names to ../../build/my_robot_controller/my_robot_controller.egg-info/top_level.txt
+[1.466s] reading manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[1.467s] writing manifest file '../../build/my_robot_controller/my_robot_controller.egg-info/SOURCES.txt'
+[1.469s] running build
+[1.469s] running build_py
+[1.469s] copying my_robot_controller/turtle_controller_test_vii.py -> /home/susana/ros2_ws/build/my_robot_controller/build/lib/my_robot_controller
+[1.471s] running install
+[1.471s] running install_lib
+[1.472s] copying /home/susana/ros2_ws/build/my_robot_controller/build/lib/my_robot_controller/turtle_controller_test_vii.py -> /home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller
+[1.475s] byte-compiling /home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/turtle_controller_test_vii.py to turtle_controller_test_vii.cpython-310.pyc
+[1.478s] running install_data
+[1.478s] running install_egg_info
+[1.483s] removing '/home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[1.483s] Copying ../../build/my_robot_controller/my_robot_controller.egg-info to /home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller-0.0.0-py3.10.egg-info
+[1.485s] running install_scripts
+[1.521s] Installing draw_circle script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.522s] Installing pose_subscriber script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.523s] Installing test_node script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.524s] Installing turtle_controller script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.526s] Installing turtle_controller_test script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.526s] Installing turtle_controller_test_vii script to /home/susana/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[1.529s] writing list of installed files to '/home/susana/ros2_ws/build/my_robot_controller/install.log'
+[1.567s] Invoked command in '/home/susana/ros2_ws/src/my_robot_controller' returned '0': PYTHONPATH=/home/susana/ros2_ws/build/my_robot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_robot_controller build --build-base /home/susana/ros2_ws/build/my_robot_controller/build install --record /home/susana/ros2_ws/build/my_robot_controller/install.log --single-version-externally-managed install_data
