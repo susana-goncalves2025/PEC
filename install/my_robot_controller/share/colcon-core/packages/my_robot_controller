@@ -1,1 +1,1 @@
-geometry_msgs:rclpy:turtlesim
+example_interfaces:geometry_msgs:rclpy:rosidl_default_runtime:turtlesim

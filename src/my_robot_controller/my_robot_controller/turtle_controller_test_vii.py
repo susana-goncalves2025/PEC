@@ -3,9 +3,8 @@ import rclpy
 from rclpy.node import Node
 from turtlesim.msg import Pose
 from geometry_msgs.msg import Twist
-from geometry_msgs.msg import Point #*
-from std_srvs.srv import Empty #*
-from example_interfaces.srv import SetFloat64 #** Falta criar SetFloat64
+from geometry_msgs.msg import Point 
+from std_srvs.srv import Empty 
 import math
 
 class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
@@ -15,24 +14,38 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
         #self.previous_x_ = 0
         #self.previous_y_ = 0
         self.cmd_vel_publisher_= self.create_publisher(Twist, "/turtle1/cmd_vel",57) #publicar comandos velocidadde
+
         self.pose_subscriber_ = self.create_subscription(Pose, "/turtle1/pose", self.pose_callback,57) #subscribe no tópico da posicao
         self.position_subscriber_ = self.create_subscription(Point, "/desired_position", self.position_callback, 57) #subscribe no tópico de posiçao desejada 
+        self.v_subscriber_ = self.create_subscription (Twist, "/desired_vnom", self.v_callback, 10)
+        self.w_subscriber_ = self.create_subscription(Twist, "/desired_wnom", self.w_callback, 10)
+
         self.reset_client = self.create_client(Empty, "/reset") #cliente para o serviço de reset da tartaruga
         self.reset_service = self.create_service(Empty, "/reset_turtle", self.reset_callback) #serviço personalizado /reset_turtle
+
         self.get_logger().info("Turtle controller has been started.") #info inicializacao
         self.vnom = 0.2 #vel linear nominal
         self.wnom = 0.8 #vel angular nom
         self.k_p = 1/0.2 #ganho proporcional para pos
         self.k_theta = self.wnom*2/math.pi #ganho proporcional para angulo
 
-        self.x_d = 4.0 #*
-        self.y_d = 4.0 #*
+        self.x_d = 4.0 
+        self.y_d = 4.0 
 
     def position_callback(self, msg: Point): #definir posicao desejada
         self.x_d = msg.x 
         self.y_d =msg.y 
-        self.get_logger().info(f'Posição desejada: x={self.x_d}, y={self.y_d}') 
+        self.get_logger().info(f'Posição desejada: x={self.x_d}, y={self.y_d}')
 
+    def v_callback(self, msg: Twist): #definir vnom
+        self.vnom = msg.linear.x
+        self.k_theta = self.wnom *2/ math.pi
+        self.get_logger().info(f"Vel atualizada: vnom={self.vnom}")
+    
+    def w_callback(self, msg: Twist): #definir wnom
+        self.wnom = msg.angular.z
+        self.k_theta = self.wnom *2/ math.pi
+        self.get_logger().info(f"Vel angular atualizada: wnom={self.wnom}")
 
     def reset_callback(self, request, response): #Callback para /reset_turtle 
         if not self.reset_client.wait_for_service(timeout_sec=2.0): # Verificar se o serviço /reset está disponível
@@ -71,7 +84,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
             #erro angular
             theta_d = math.atan2(self.y_d - pose.y, self.x_d - pose.x)
 
-#verificar com prof
+
             def normalizacao_angulo(angle):
                 if angle >=0:
                     angle = math.fmod( angle + math.pi, 2*math.pi)
@@ -84,10 +97,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
             
             error_theta = dif_angulos(theta_d, pose.theta)
 
-            #while error_theta > math.pi/2:
-            #    error_theta -= math.pi
-            #while error_theta < -math.pi/2:
-            #    error_theta += math.pi
+
 
             
             cmd.linear.x = 0.0
@@ -105,23 +115,6 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
         self.cmd_vel_publisher_.publish(cmd) #publicar comando vel
 
-#Ver com professor:
-    def set_vnom_callback(self, request, response): #***
-        self.vnom = request.data
-        self.get_logger().info(f"Nova vnom: {self.vnom}")
-        response.success = True
-        response.message = "vnom alterada com sucesso"
-        return response
-
-    def set_wnom_callback(self, request, response): #**
-        self.wnom = request.data
-        self.k_theta = self.wnom * 2 / math.pi
-        self.get_logger().info(f"Nova wnom: {self.wnom}")
-        response.success = True
-        response.message = "wnom alterada com sucesso"
-        return response
-
-
 
 def main(args=None):
     rclpy.init(args=args)
@@ -132,5 +125,15 @@ def main(args=None):
 #if __name__ == '__main__': #*
 #    main() #*
 
-#posição desejada: ros2 topic pub /desired_position geometry_msgs/Point "{x: 0.0, y: 0.0, z: 0.0}"
-#reset da posição: ros2 service call /reset_turtle std_srvs/srv/Empty
+#posição desejada:
+#ros2 topic pub /desired_position geometry_msgs/Point "{x: 0.0, y: 0.0, z: 0.0}"
+
+
+#velocidade linear desejada:
+#ros2 topic pub /desired_vnom geometry_msgs/Twist "{linear: {x: 0.4}}"
+
+#velocidade angular deseada:
+#ros2 topic pub /desired_wnom geometry_msgs/Twist "{angular: {z: 1.2}}"
+
+#reset da posição:
+#ros2 service call /reset_turtle std_srvs/srv/Empty
