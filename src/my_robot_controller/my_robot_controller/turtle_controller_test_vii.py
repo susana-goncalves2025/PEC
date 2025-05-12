@@ -11,8 +11,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
     def __init__(self):
         super().__init__("turtle_controller_test_vii")
-        #self.previous_x_ = 0
-        #self.previous_y_ = 0
+
         self.cmd_vel_publisher_= self.create_publisher(Twist, "/turtle1/cmd_vel",57) #publicar comandos velocidadde
 
         self.pose_subscriber_ = self.create_subscription(Pose, "/turtle1/pose", self.pose_callback,57) #subscribe no tópico da posicao
@@ -28,23 +27,31 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
         self.wnom = 0.8 #vel angular nom
         self.k_p = 1/0.2 #ganho proporcional para pos
         self.k_theta = self.wnom*2/math.pi #ganho proporcional para angulo
+        self.k_l = (self.k_theta)**2/(4*self.vnom) #ganho lateral
 
-        self.x_d = 4.0 
-        self.y_d = 4.0 
+        #coordenadas ponto inicial
+        self.x0 = 7.0
+        self.y0 = 7.0
+
+        #coordenadas ponto desejado
+        self.x_d = 7.0 
+        self.y_d = 11.0 
 
     def position_callback(self, msg: Point): #definir posicao desejada
         self.x_d = msg.x 
-        self.y_d =msg.y 
+        self.y_d = msg.y 
         self.get_logger().info(f'Posição desejada: x={self.x_d}, y={self.y_d}')
 
     def v_callback(self, msg: Twist): #definir vnom
         self.vnom = msg.linear.x
         self.k_theta = self.wnom *2/ math.pi
+        self.k_l = (self.k_theta)**2/(4*self.vnom)
         self.get_logger().info(f"Vel atualizada: vnom={self.vnom}")
     
     def w_callback(self, msg: Twist): #definir wnom
         self.wnom = msg.angular.z
         self.k_theta = self.wnom *2/ math.pi
+        self.k_l = (self.k_theta)**2/(4*self.vnom)
         self.get_logger().info(f"Vel angular atualizada: wnom={self.wnom}")
 
     def reset_callback(self, request, response): #Callback para /reset_turtle 
@@ -61,24 +68,37 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
         return response
 
 
-#Funcao callback chamada sempre que recebe nova posicao
+    #Funcao callback chamada sempre que recebe nova posicao
     def pose_callback(self, pose: Pose): 
         cmd = Twist() #Comando de vel a ser enviado
-#        x_d = 4.0 #x desejado
-#        y_d = 4.0 #y desejado
-        
-        #erro posicao
+
+        #erro posiçao
         error_x = self.x_d - pose.x
         error_y = self.y_d - pose.y
         error_pose = math.sqrt(error_x**2 + error_y**2)
 
+        #cálculo vetor da linha (versor)
+        dif_x = self.x_d - self.x0
+        dif_y = self.y_d - self.y0
 
+        ux = dif_x/math.sqrt(dif_x**2 + dif_y**2)
+        uy = dif_y/math.sqrt(dif_x**2 + dif_y**2)
+
+        #cálculo vetor/posiçao relativa ao ponto inicial
+        vx = pose.x - self.x0
+        vy = pose.y - self.y0
+        
+        #erro até a linha (dist perpendicular)
+        error_line = vx*uy - vy* ux
 
         #condiçao erro pequeno
         if error_pose < 0.05:
             vel_d = 0.0
             ang_vel_d = 0.0
             self.get_logger().info("Trajectory completed :)")
+            
+            self.x0 = pose.x
+            self.y0 = pose.y
         
         else:
             #erro angular
@@ -86,7 +106,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
 
             def normalizacao_angulo(angle):
-                if angle >=0:
+                if angle >= 0:
                     angle = math.fmod( angle + math.pi, 2*math.pi)
                     return angle - math.pi
                 else:
@@ -98,16 +118,15 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
             error_theta = dif_angulos(theta_d, pose.theta)
 
 
-
-            
-            cmd.linear.x = 0.0
+            cmd.linear.x = 0.0 #iniciar movimento só se estiver com rotacao certa
+            ang_vel_d = self.k_l*error_line + self.k_theta*error_theta
             if abs(error_theta) > math.pi/2:
-                vel_d=0
-                ang_vel_d= self.wnom* math.copysign(1.0,error_theta)
+                vel_d = 0.0
+                #ang_vel_d = self.wnom* math.copysign(1.0,error_theta)
             
-            elif abs(error_theta) <= math.pi/2: #igual a else
-                ang_vel_d= self.wnom*error_theta*self.k_theta
-                vel_d= self.vnom*math.cos(error_theta)*min(1,self.k_p*error_pose)
+            elif abs(error_theta) <= math.pi/2: 
+                #ang_vel_d= self.wnom*error_theta*self.k_theta
+                vel_d = self.vnom*math.cos(error_theta)*min(1,self.k_p*error_pose)
                 
     
         cmd.linear.x = float(vel_d)
@@ -141,25 +160,3 @@ def main(args=None):
 
 
 
-
-
-#follow line (para depois de push)
-
-#theta_d = math.atan2(y_d - pose.y, x_d - pose.x)
-#error_theta = theta_d - pose_theta
-
-
-# error_x = self.x_d - pose.x
-# error_y = self.y_d - pose.y
-# error_pose = math.sqrt(error_x**2 + error_y**2)
-
-
-#dif_x=xf-xi
-#ux=dif_x/math.sqrt(dif_x**2)
-#dif_y=yf-yi
-#uy=dif_y/math.sqrt(dif_y**2)
-
-
-#vx=pose.x-xi
-#vy=pose.y-yi
-#error_line=

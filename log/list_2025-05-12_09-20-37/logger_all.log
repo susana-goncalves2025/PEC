@@ -1,0 +1,65 @@
+[0.228s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/home/susana/PEC']
+[0.228s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/susana/PEC'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x777aadf3ac20>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x777aae0d7c10>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x777aae0d7c10>>, mixin_verb=('list',))
+[0.768s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.769s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.769s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.769s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.769s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.769s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/susana/PEC'
+[0.769s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['ignore', 'ignore_ament_install']
+[0.769s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'ignore'
+[0.769s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'ignore_ament_install'
+[0.769s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['colcon_pkg']
+[0.769s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'colcon_pkg'
+[0.770s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['colcon_meta']
+[0.770s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'colcon_meta'
+[0.770s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['ros']
+[0.770s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'ros'
+[0.796s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['cmake', 'python']
+[0.798s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'cmake'
+[0.798s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'python'
+[0.798s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extensions ['python_setup_py']
+[0.798s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC) by extension 'python_setup_py'
+[0.798s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/build) by extensions ['ignore', 'ignore_ament_install']
+[0.799s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/build) by extension 'ignore'
+[0.799s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/build) ignored
+[0.799s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/install) by extensions ['ignore', 'ignore_ament_install']
+[0.799s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/install) by extension 'ignore'
+[0.799s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/install) ignored
+[0.801s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/log) by extensions ['ignore', 'ignore_ament_install']
+[0.801s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/log) by extension 'ignore'
+[0.802s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/log) ignored
+[0.802s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['ignore', 'ignore_ament_install']
+[0.803s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'ignore'
+[0.803s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'ignore_ament_install'
+[0.803s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['colcon_pkg']
+[0.803s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'colcon_pkg'
+[0.804s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['colcon_meta']
+[0.804s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'colcon_meta'
+[0.805s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['ros']
+[0.805s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'ros'
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['cmake', 'python']
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'cmake'
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'python'
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extensions ['python_setup_py']
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src) by extension 'python_setup_py'
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/build) by extensions ['ignore', 'ignore_ament_install']
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/build) by extension 'ignore'
+[0.806s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/build) ignored
+[0.807s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/install) by extensions ['ignore', 'ignore_ament_install']
+[0.807s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/install) by extension 'ignore'
+[0.807s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/install) ignored
+[0.807s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/log) by extensions ['ignore', 'ignore_ament_install']
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/log) by extension 'ignore'
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/log) ignored
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extensions ['ignore', 'ignore_ament_install']
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extension 'ignore'
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extension 'ignore_ament_install'
+[0.808s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extensions ['colcon_pkg']
+[0.809s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extension 'colcon_pkg'
+[0.809s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extensions ['colcon_meta']
+[0.809s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extension 'colcon_meta'
+[0.809s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extensions ['ros']
+[0.809s] Level 1:colcon.colcon_core.package_identification:_identify(/home/susana/PEC/src/my_robot_controller) by extension 'ros'
+[0.814s] DEBUG:colcon.colcon_core.package_identification:Package '/home/susana/PEC/src/my_robot_controller' with type 'ros.ament_python' and name 'my_robot_controller'
+[0.815s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
