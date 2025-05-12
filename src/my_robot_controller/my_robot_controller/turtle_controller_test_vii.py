@@ -137,3 +137,29 @@ def main(args=None):
 
 #reset da posição:
 #ros2 service call /reset_turtle std_srvs/srv/Empty
+
+
+
+
+
+
+#follow line (para depois de push)
+
+#theta_d = math.atan2(y_d - pose.y, x_d - pose.x)
+#error_theta = theta_d - pose_theta
+
+
+# error_x = self.x_d - pose.x
+# error_y = self.y_d - pose.y
+# error_pose = math.sqrt(error_x**2 + error_y**2)
+
+
+#dif_x=xf-xi
+#ux=dif_x/math.sqrt(dif_x**2)
+#dif_y=yf-yi
+#uy=dif_y/math.sqrt(dif_y**2)
+
+
+#vx=pose.x-xi
+#vy=pose.y-yi
+#error_line=
