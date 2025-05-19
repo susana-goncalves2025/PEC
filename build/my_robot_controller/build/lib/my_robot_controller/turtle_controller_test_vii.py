@@ -7,6 +7,16 @@ from geometry_msgs.msg import Point
 from std_srvs.srv import Empty 
 import math
 
+def normalizacao_angulo(angle):
+                if angle >= 0:
+                    angle = math.fmod( angle + math.pi, 2*math.pi)
+                    return angle - math.pi
+                else:
+                    angle = math.fmod( -angle + math.pi, 2*math.pi)
+                    return -(angle - math.pi)
+def dif_angulos(theta_d, theta_atual):
+    return normalizacao_angulo(normalizacao_angulo(theta_d) - normalizacao_angulo(theta_atual))
+
 class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
     def __init__(self):
@@ -16,6 +26,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
         self.pose_subscriber_ = self.create_subscription(Pose, "/turtle1/pose", self.pose_callback,57) #subscribe no tópico da posicao
         self.position_subscriber_ = self.create_subscription(Point, "/desired_position", self.position_callback, 57) #subscribe no tópico de posiçao desejada 
+        self.pos0_subscriber = self.create_subscription(Point, "/pos0_subscription", self.pos0_callback, 10)
         self.v_subscriber_ = self.create_subscription (Twist, "/desired_vnom", self.v_callback, 10)
         self.w_subscriber_ = self.create_subscription(Twist, "/desired_wnom", self.w_callback, 10)
 
@@ -24,7 +35,7 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
 
         self.get_logger().info("Turtle controller has been started.") #info inicializacao
         self.vnom = 0.2 #vel linear nominal
-        self.wnom = 0.8 #vel angular nom
+        self.wnom = 1.0 #vel angular nom
         self.k_p = 1/0.2 #ganho proporcional para pos
         self.k_theta = self.wnom*2/math.pi #ganho proporcional para angulo
         self.k_l = (self.k_theta)**2/(4*self.vnom) #ganho lateral
@@ -36,6 +47,12 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
         #coordenadas ponto desejado
         self.x_d = 7.0 
         self.y_d = 11.0 
+
+    def pos0_callback(self, msg: Point): #definir ponto inicial da trajetória
+        self.x0 = msg.x
+        self.y0 = msg.y
+        self.get_logger().info(f'Ponto inicial: x0={self.x0}, y={self.y0}')
+
 
     def position_callback(self, msg: Point): #definir posicao desejada
         self.x_d = msg.x 
@@ -97,35 +114,19 @@ class TurtleControllerNode(Node): #definicao classe TurtleControllerNode
             ang_vel_d = 0.0
             self.get_logger().info("Trajectory completed :)")
             
-            self.x0 = pose.x
-            self.y0 = pose.y
         
         else:
             #erro angular
             theta_d = math.atan2(self.y_d - pose.y, self.x_d - pose.x)
-
-
-            def normalizacao_angulo(angle):
-                if angle >= 0:
-                    angle = math.fmod( angle + math.pi, 2*math.pi)
-                    return angle - math.pi
-                else:
-                    angle = math.fmod( -angle + math.pi, 2*math.pi)
-                    return -(angle - math.pi)
-            def dif_angulos(theta_d, theta_atual):
-                return normalizacao_angulo(normalizacao_angulo(theta_d) - normalizacao_angulo(theta_atual))
-            
             error_theta = dif_angulos(theta_d, pose.theta)
-
-
-            cmd.linear.x = 0.0 #iniciar movimento só se estiver com rotacao certa
-            ang_vel_d = self.k_l*error_line + self.k_theta*error_theta
+            self.get_logger().info(f"Erro angular (error_theta): {error_theta:.3f} rad")
             if abs(error_theta) > math.pi/2:
-                vel_d = 0.0
-                #ang_vel_d = self.wnom* math.copysign(1.0,error_theta)
+                vel_d = self.vnom*math.cos(error_theta)*min(1,self.k_p*error_pose)
+                ang_vel_d = self.wnom* math.copysign(1.0,error_theta)
+                #ang_vel_d = self.k_l*error_line + self.k_theta*error_theta
             
-            elif abs(error_theta) <= math.pi/2: 
-                #ang_vel_d= self.wnom*error_theta*self.k_theta
+            else: 
+                ang_vel_d = self.k_l*error_line + self.k_theta*error_theta
                 vel_d = self.vnom*math.cos(error_theta)*min(1,self.k_p*error_pose)
                 
     
@@ -147,6 +148,8 @@ def main(args=None):
 #posição desejada:
 #ros2 topic pub /desired_position geometry_msgs/Point "{x: 0.0, y: 0.0, z: 0.0}"
 
+#ponto inicial reta:
+#ros2 topic pub /pos0_subscription geometry_msgs/Point "{x: 1.0, y: 1.0, z: 0.0}"
 
 #velocidade linear desejada:
 #ros2 topic pub /desired_vnom geometry_msgs/Twist "{linear: {x: 0.4}}"

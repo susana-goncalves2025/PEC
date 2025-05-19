@@ -1,0 +1,5 @@
+  File "/home/susana/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my_robot_controller/turtle_controller_test_vii.py", line 122
+    1   self.get_logger().info(f"Erro angular (error_theta): {error_theta:.3f} rad")            
+        ^^^^
+SyntaxError: invalid syntax
+
